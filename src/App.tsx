@@ -46,6 +46,28 @@ const ProjectCard = ({ image, category, title }: { image: string; category: stri
   </motion.div>
 );
 
+const TestimonialCard = ({ quote, author, role, image }: { quote: string; author: string; role: string; image: string }) => (
+  <motion.div 
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    className="p-10 rounded-[40px] bg-brand-bg-start/30 border border-black/5 flex flex-col justify-between h-full"
+  >
+    <p className="text-xl md:text-2xl font-medium leading-relaxed italic mb-10 text-brand-dark/80">
+      "{quote}"
+    </p>
+    <div className="flex items-center gap-4">
+      <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-sm">
+        <img src={image} alt={author} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+      </div>
+      <div className="text-left">
+        <p className="font-bold text-brand-dark">{author}</p>
+        <p className="text-sm text-brand-dark/60">{role}</p>
+      </div>
+    </div>
+  </motion.div>
+);
+
 const Sparkle8 = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
     <path d="M12 0L13.5 8.5L22 10L13.5 11.5L12 20L10.5 11.5L2 10L10.5 8.5L12 0Z" />
@@ -198,24 +220,37 @@ export default function App() {
 
       {/* Testimonials Section */}
       <section className="py-32 px-6 bg-white overflow-hidden">
-        <div className="max-w-7xl mx-auto text-center">
-          <MessageSquare className="w-12 h-12 text-brand-dark/20 mx-auto mb-10" />
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-5xl font-medium leading-tight max-w-4xl mx-auto mb-12 italic serif"
-          >
-            "The team at Digital Experience transformed our vision into a reality. Their attention to detail and creative approach is unmatched in the industry."
-          </motion.h2>
-          <div className="flex items-center justify-center gap-4">
-            <div className="w-12 h-12 rounded-full overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=100" alt="Client" referrerPolicy="no-referrer" />
-            </div>
-            <div className="text-left">
-              <p className="font-bold">Alex Rivera</p>
-              <p className="text-sm text-brand-dark/60">CEO, TechFlow</p>
-            </div>
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-20">
+            <MessageSquare className="w-12 h-12 text-brand-dark/20 mx-auto mb-6" />
+            <h2 className="text-4xl md:text-6xl font-bold tracking-tight">What our partners say</h2>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            <TestimonialCard 
+              quote="The team at Digital Experience transformed our vision into a reality. Their attention to detail and creative approach is unmatched in the industry."
+              author="Alex Rivera"
+              role="CEO, TechFlow"
+              image="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=100"
+            />
+            <TestimonialCard 
+              quote="Working with them was a game-changer for our brand. They didn't just build a website; they built an entire digital ecosystem that resonates with our users."
+              author="Sarah Chen"
+              role="Design Director, Creativ"
+              image="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=100"
+            />
+            <TestimonialCard 
+              quote="Their strategic thinking and technical execution are world-class. We've seen a 40% increase in user engagement since the relaunch."
+              author="Marcus Thorne"
+              role="Founder, Peak"
+              image="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=100"
+            />
+            <TestimonialCard 
+              quote="A truly collaborative partner. They took the time to understand our complex requirements and delivered a solution that exceeded all expectations."
+              author="Elena Gilbert"
+              role="Marketing Head, Bloom"
+              image="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=100"
+            />
           </div>
         </div>
       </section>
